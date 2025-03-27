@@ -15,6 +15,9 @@ function Header(){
         <header>
             <img src={logo} alt="LMS Logo"/>
             <nav>
+                <a href = "/">Home</a>
+            </nav>
+            <nav>
                 <a href="/Login">Login Page</a>
             </nav>
             <nav>
