@@ -1,0 +1,331 @@
+/*index.html*/
+body{
+    margin:0px;
+}
+
+header h1{
+    color: white;
+}
+
+header img{
+    width: 100px;
+}
+
+header{
+    background-color: #004080;
+    padding: 20px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #003366;
+    padding: 10px;
+}
+
+nav a{
+    text-decoration: none;
+    color: white;
+}
+
+nav a:hover{
+    text-decoration: underline;
+}
+
+.index{
+    background-color:#d4d4d4;
+}
+
+.about{
+    padding:40px; /*asks for 20px margin and padding, that causes issues with the background color of parent*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.about :nth-child(n){
+    margin:8px;
+}
+
+.about p{
+    color: black;
+}
+
+.about h2{
+    color: #004080;
+}
+
+.features{
+    font-weight: bold;
+}
+
+#index_list{
+    text-align:center;
+    margin:-4px;
+    padding:0;
+    list-style:none;
+}
+
+#index_list li{
+    margin:12px;
+}
+
+#index_list li::before{
+    content: "- ";
+}
+
+footer{
+    display: flex;
+    background-color: #004080;
+    padding: 10px;
+    justify-content: center;
+}
+
+footer p{
+    color: white;
+}
+
+/*login.html*/
+
+.main_login{
+    text-align: center;
+}
+
+.main_login h2{
+    color: #003366;
+    margin-top: 70px;
+}
+
+form{
+    padding: 25px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #d4d4d4;
+    padding: 30px;
+    margin-left: 150px;
+    margin-right: 150px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    box-shadow:7px 7px 10px #dcdcdc;
+}
+
+.input_field{
+    background-color: lightyellow;
+    padding: 10px;
+    border-radius: 5px;
+    border-color: darkgrey;
+    border-width: 3px;
+    width: 250px;
+    margin-top: 10px;
+}
+
+.button_login{
+    padding: 7px;
+    background-color: #008000;
+    color: white;
+    border: 0;
+    border-radius: 3px;
+}
+
+.button_login:hover{
+    background-color: #006600;
+
+}
+
+.main_login form a{
+    color: #004080;
+    text-decoration: none;
+}
+
+.main_login form a:hover{
+    text-decoration: underline;
+}
+
+.buttons{
+    margin-bottom: 30px;
+}
+
+
+/*course_view.html*/
+/*h3's were changed to h2 to better match the reference output given in assigmemnt pdf*/
+.term{
+    background-color: lightyellow;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.courseViewTables{
+    margin-top:10px;
+    margin-left:10px;
+    margin-right:10px;
+}
+
+#pendingTable{
+    margin-bottom:20px;
+}
+
+hr{
+    margin-right:10px;
+    margin-left:10px;
+}
+
+.tile{
+    background-color: #e6f2ff;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 10px;
+    border:#e6f2ff;
+    text-align: center;
+    box-shadow: 7px 7px 10px #dcdcdc;
+}
+
+td img{
+    width: 100%;
+    
+}
+
+#e{
+    width: 33%;
+}
+
+#p{
+    width: 50%;
+}
+
+.select{
+    text-align: center;
+    
+}
+
+.select h3{
+    color: #003366;
+}
+
+#term{
+    background-color: lightyellow;
+}
+
+.button_a{
+    background-color: #4caf50;
+    color: white;
+    border-radius: 3px;
+    border: 0;
+    padding: 5px;
+}
+
+.button_a:hover{
+    background-color: #265e28;
+}
+
+.button_d{
+    background-color: #d32f2f;
+    color: white;
+    border-radius: 3px;
+    border: 0;
+    padding: 5px;
+
+}
+
+.button_d:hover{
+    background-color: #821b1b;
+}
+
+.pending_h3{
+    text-align: center;
+}
+
+.pending_h3 h3{
+    color: #003366;
+}
+
+/*attempt_quiz.html*/
+.quiz{
+    text-align:center;
+}
+.quiz img{
+    width:95%; /*requirements state 100%, however this matches image shown better as in image, it doesn't take up the entire screen.*/
+    height:150px;
+    border-radius:10px;
+    margin-top:30px;
+}
+
+.quizInfo{
+    text-align:center;
+    text-decoration:bold;
+    background:lightblue;
+    padding:20px;
+    margin-right:250px;
+    margin-left:250px;
+}
+
+.quizInfo h2{
+    color:#003366;
+}
+
+.quizQuestion{
+    background-color:#cacaca;
+    margin-right:35%;
+    margin-left:35%;
+    margin-bottom:15px;
+    text-align:left;
+    padding:15px;
+}
+
+.quiz button{
+    background-color:lightblue;
+    color:black;
+    padding:9px;
+    border:0;
+    border-radius:3px;
+}
+
+.quiz button:hover{
+    background-color:darkblue;
+    color:white;
+}
+
+.quiz #finish{
+    background-color:#d32f2f;
+    color:white;
+}
+
+.quiz #finish:hover{
+    background-color:#821b1b;
+}
+
+/*Leaderboard*/
+.leaderboard{
+    margin-top:5px;
+    margin-bottom:20px;
+    border-spacing:10px;
+    
+}
+ .leaderboard th, tr, td{
+    border:2px solid white;
+    padding:1px;
+    margin:5px;
+}
+
+.leaderboard th:nth-child(1), tr:nth-child(1){
+    margin-left:0px;
+    border-left:0px;
+}
+
+.leaderboard th:last-child, tr:last-child{
+    margin-right:0px;
+    border-right:0px;
+}
+
+.leaderboard img{
+    border-radius:100%;
+    border:1.5px solid black;
+}
