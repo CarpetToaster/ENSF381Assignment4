@@ -8,6 +8,9 @@ import CoursesPage from './CoursesPage.js';
 import LoginForm from './LoginForm.js';
 import courses from '../data/courses.js';
 import testimonials from '../data/testimonials.js';
+import Header from "./Header.js"
+import Footer from "./Footer.js";
+import {useEffect, useState} from 'react';
 
 function Homepage(){
     return (
@@ -15,30 +18,6 @@ function Homepage(){
             <Header />
             <MainSection />
             <Footer />
-        </div>
-    );
-}
-
-function Header(){
-    let flexItem = {
-        width:"33%",
-        padding:"25px",
-        margin:"25px"
-    }
-
-    return (
-        <div style={{
-            display:"flex",
-            flexDirection:"row",
-            width:"100%"
-        }}>
-            <img src={logo} alt="LMS Logo" style={{height:"150px", widht:"150px"}}/>
-            <div style={flexItem}>
-                <a href="/Login">Login Page</a>
-            </div>
-            <div style={flexItem}>
-                <a href="/Courses">Courses Page</a>
-            </div>
         </div>
     );
 }
@@ -77,7 +56,7 @@ function MainSection(){
 
     let courseTable = randomCourses.map((course) =>{
         return (
-            <td style={{width:"33%"}}>
+            <td class="tile" id="e">
                 <img src={(course.image == "images/course1.jpg") ? course1 : course2} style={{width:"100%"}}/>
                 <p>{course.name}</p>
                 <p>{course.instructor}</p>
@@ -87,10 +66,10 @@ function MainSection(){
         );
     });
 
-
+    let stars = "★☆";
     let testimonalRow = randomTestimonials.map((testimonial) =>{
         return (
-            <td style={{width:"33%"}}>
+            <td class="tile" id='p'>
                 <p>{testimonial.courseName}</p>
                 <p>{testimonial.studentName}</p>
                 <p>{testimonial.review}</p>
@@ -101,40 +80,38 @@ function MainSection(){
     
     return (
         <div>
-            <h2>About LMS</h2>
-            <p>The Learning Management System (LMS) helps students and instructors manage courses, quizzes, and track performance efficiently.</p>
-            <p class="features">Key Features:</p>
-            <ul id="index_list">
-                <li>Enroll in courses</li>
-                <li>Attempt quizzes</li>
-                <li>View leaderboards</li>
-            </ul>
+            <div class="about">
+                <h2>About LMS</h2>
+                <p>The Learning Management System (LMS) helps students and instructors manage courses, quizzes, and track performance efficiently.</p>
+                <p class="features">Key Features:</p>
+                <ul id="index_list">
+                    <li>Enroll in courses</li>
+                    <li>Attempt quizzes</li>
+                    <li>View leaderboards</li>
+                </ul>
+            </div>
 
             <h3>Featured Courses</h3>
-            <table>
-                <tr>
-                    {courseTable}
-                </tr>
-            </table>
+            <div class="courseViewTables">
+                <table>
+                    <tr>
+                        {courseTable}
+                    </tr>
+                </table>
+            </div>
+
             <hr></hr>
+
             <h3>Course Reviews</h3>
-            <table>
-                <tr>
-                    {testimonalRow}
-                </tr>
-            </table>
-
+            <div class="courseViewTable">
+                <table>
+                    <tr>
+                        {testimonalRow}
+                    </tr>
+                </table>
+            </div>
         </div>
     );
 }
-
-function Footer(){
-    return (
-        <div>
-
-        </div>
-    );
-}
-
 
 export default Homepage;
