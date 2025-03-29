@@ -1,10 +1,12 @@
+// Ayre Ibrahim (UCID#30207941)
+// Mykola Viktorovskyi (UCID#30233216)
+
+
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Homepage from './components/Homepage.js';
 import App from "./App.js"
-// import CoursesPage from "./components/CoursesPage.js"
-// import LoginFOrm from "./components/LoginForm.js"
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
