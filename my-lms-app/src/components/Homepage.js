@@ -1,11 +1,6 @@
 import React from 'react'
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import styled from 'styled-components';
-import logo from "../images/logo.jpg";
 import course1 from "../images/course1.jpg";
 import course2 from "../images/course2.jpg"
-import CoursesPage from './CoursesPage.js';
-import LoginForm from './LoginForm.js';
 import courses from '../data/courses.js';
 import testimonials from '../data/testimonials.js';
 import Header from "./Header.js"
@@ -112,7 +107,8 @@ function MainSection(){
                 </ul>
             </div>
 
-            <h3>Featured Courses</h3>
+            <h3 style={{margin:"15px"}}>Featured Courses</h3>
+            <hr></hr>
             <div class="courseViewTables">
                 <table>
                     <tr>
@@ -121,10 +117,9 @@ function MainSection(){
                 </table>
             </div>
 
+            <h3 style={{margin:"15px"}}>Course Reviews</h3>
             <hr></hr>
-
-            <h3>Course Reviews</h3>
-            <div class="courseViewTable">
+            <div class="courseViewTable" style={{margin:"15px"}}>
                 <table>
                     <tr>
                         {testimonialRow}
