@@ -12,6 +12,7 @@ import Footer from "./Footer.js";
 import {useEffect, useState} from 'react';
 
 
+
 function CoursesPage(){
     const [enrolled, setEnrolled] = useState(courses.filter((course) => {
         return (course.id in localStorage)
