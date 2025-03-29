@@ -329,3 +329,14 @@ td img{
     border-radius:100%;
     border:1.5px solid black;
 }
+
+.course_display li{
+    display:inline-block;
+    width:20%
+}
+
+li div{
+    display:inline-block;
+    width:100%
+}
+
