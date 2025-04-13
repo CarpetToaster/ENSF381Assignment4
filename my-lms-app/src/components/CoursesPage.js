@@ -1,5 +1,5 @@
 import React from 'react';
-import courses from '../data/courses.js';
+import courses from '../../../Backend/courses.js';
 import Header from "./Header.js"
 import Footer from "./Footer.js";
 import {useState} from 'react';

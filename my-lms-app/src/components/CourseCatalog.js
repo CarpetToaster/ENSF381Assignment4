@@ -1,5 +1,5 @@
 import React from 'react';
-import courses from '../data/courses.js';
+import courses from '../../../Backend/courses.js';
 import CourseItem from './CourseItem.js';
 
 
