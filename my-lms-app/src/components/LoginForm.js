@@ -5,7 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import './styles.css';
 
-export const AuthContext = createContext();
+export const AuthContextLogin = createContext();
 
 const LoginFormFunction = () => {
   const [username, setUsername] = useState('');
@@ -47,7 +47,7 @@ const LoginFormFunction = () => {
   };
 
   return (
-    <AuthContext.Provider value={{ status }}>
+    <AuthContextLogin.Provider value={{ status }}>
       <main className="main_login" id="loginArea">
         <h2>LMS Login</h2>
         <form>
@@ -72,12 +72,12 @@ const LoginFormFunction = () => {
           </div>
 
           <a href="#">Forgot Password?</a><br />
-          <a href="#">Don't have an account? Sign up</a>
+          <a href="Register">Don't have an account? Sign up</a>
 
           <AuthMessage />
         </form>
       </main>
-    </AuthContext.Provider>
+    </AuthContextLogin.Provider>
   );
 };
 

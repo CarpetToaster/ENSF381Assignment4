@@ -340,3 +340,37 @@ li div{
     width:100%
 }
 
+/*signup.html*/
+.signup_button {
+    background-color: #4CAF50;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    opacity: 0.5;
+    color: white;
+    border: none;
+    transition: 0.3s ease;
+  }
+  
+  .signup_button:hover {
+    background-color: #45A049;
+    opacity: 1.0;
+    cursor: pointer;
+  }
+  
+  .auth-message {
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 5px;
+  }
+  
+  .auth-message.success {
+    color: #155724;
+    background-color: #d4edda;
+  }
+  
+  .auth-message.error {
+    color: #721c24;
+    background-color: #f8d7da;
+  }
+
