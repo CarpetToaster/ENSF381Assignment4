@@ -5,6 +5,7 @@ import CourseItem from './CourseItem.js';
 
 function CourseCatalog({courses, enrolled, onSetEnrolled}){
     const studentId = localStorage.getItem('studentId');
+    console.log(studentId)
 
     const handleEnroll = async (course) => {
         try {

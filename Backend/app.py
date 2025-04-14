@@ -6,10 +6,10 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-with open("testimonials.json") as t_file:
+with open("Backend/testimonials.json") as t_file: # This assumes the python file is ran in the folder containing Backend and my-lms-app
     testimonials_data = json.load(t_file)
 
-with open("courses.json") as c_file:
+with open("Backend/courses.json") as c_file:
     courses_data = json.load(c_file)
 
 student_id_counter = 1

@@ -25,7 +25,7 @@ const LoginFormFunction = () => {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/api/login', {
+      const res = await fetch('http://localhost:5000/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
@@ -36,6 +36,7 @@ const LoginFormFunction = () => {
       if (res.ok) {
         setStatus({ type: 'success', message: 'Login successful! Redirecting...' });
         setTimeout(() => {
+          localStorage.setItem("studentId", result.student_id)
           navigate('/courses');
         }, 2000);
       } else {

@@ -11,12 +11,12 @@ function EnrollmentList({enrolled, onSetEnrolled}){
 
     const HandleDrop = async (course) =>{
         try{
-            const res = await fetch(`http://localhost:5000/api/drop/${studentId}`, {
+            const res = await fetch(`http://localhost:5000/drop/${studentId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ courseId: course.id })
+                body: JSON.stringify({ course: course })
             });
 
             const result = await res.json();
@@ -43,7 +43,7 @@ function EnrollmentList({enrolled, onSetEnrolled}){
             <hr></hr>
             <div className="course_display" style={{display:"flex",  flexDirection:"row", flexWrap:"wrap"}}>
                 {enrolled.map((course) => 
-                    (course.id in localStorage) ? 
+                    (`enrolled_${course.id}` in localStorage) ? 
                         <li key={course.id}>
                             <EnrolledCourse course={course} onDrop={() => {
                                 HandleDrop(course);
