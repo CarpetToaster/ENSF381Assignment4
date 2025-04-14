@@ -1,5 +1,5 @@
-import React from 'react';
-import courses from '../data/courses.js';
+import React, { useEffect } from 'react';
+//import courses from '../../../Backend/courses.js';
 import Header from "./Header.js"
 import Footer from "./Footer.js";
 import {useState} from 'react';
@@ -9,10 +9,32 @@ import EnrollmentList from './EnrollmentList.js'
 
 
 function CoursesPage(){
-    const [enrolled, setEnrolled] = useState(courses.filter((course) => {
-        return (course.id in localStorage)
-    }));
+    const[enrolled, setEnrolled] = useState([]);
+    const [courses, setCourses] = useState([]);
 
+    useEffect(() => {
+        const studentId = localStorage.getItem('studentId');
+      
+        fetch('http://localhost:5000/courses')
+          .then(res => res.json())
+          .then(courseData => {
+            setCourses(courseData);
+      
+            fetch(`http://localhost:5000/student_courses/${studentId}`)
+              .then(res => res.json())
+              .then(enrolledData => {
+                setEnrolled(enrolledData);
+              })
+              .catch(err => {
+                console.error('Failed to fetch student enrolled courses:', err);
+                setEnrolled([]);
+              });
+          })
+          .catch(err => {
+            console.error('Failed to load courses:', err);
+            setCourses([]);
+          });
+      }, []);
     
     /*A few notes here:
         1. Dr. Abdellatif gave me and two other students explicit instruction
@@ -35,7 +57,7 @@ function CoursesPage(){
         <div className="courses-page">
             <Header />
             <div className="content">
-                <CourseCatalog enrolled={enrolled} onSetEnrolled={setEnrolled}/>
+                <CourseCatalog courses={courses} enrolled={enrolled} onSetEnrolled={setEnrolled}/>
                 <EnrollmentList enrolled={enrolled} onSetEnrolled={setEnrolled}/>
             </div>
             <Footer />

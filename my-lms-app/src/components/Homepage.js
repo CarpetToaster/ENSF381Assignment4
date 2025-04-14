@@ -1,8 +1,8 @@
 import React from 'react'
 import course1 from "../images/course1.jpg";
 import course2 from "../images/course2.jpg"
-import courses from '../data/courses.js';
-import testimonials from '../data/testimonials.js';
+//import courses from '../data/courses.js';
+//import testimonials from '../data/testimonials.js';
 import Header from "./Header.js"
 import Footer from "./Footer.js";
 import {useEffect, useState} from 'react';
@@ -18,67 +18,50 @@ function Homepage(){
 }
 
 function MainSection(){
-
-    // Not using useEffect for random courses as homepage b) doesn't ask for it.
-    let randomCourses = []
-    while (randomCourses.length != 3){
-        let courseNum = Math.floor(Math.random()*9);
-
-        let canAdd = true;
-        for (let i = 0; i < randomCourses.length; i++)
-            if (courses[courseNum] == randomCourses[i]){
-                canAdd = false;
-                break;
-            }
-        if (canAdd){
-            randomCourses.push(courses[courseNum]);
-        }  
-    }
-
-    let courseTable = randomCourses.map((course) =>{
-        return (
-            <td class="tile" id="e">
-                <img src={(course.image == "images/course1.jpg") ? course1 : course2}/>
-                <h4>{course.name}</h4>
-                <p>{course.instructor}</p>
-                <p>{course.description}</p>
-                <p>{course.duration}</p>
-            </td>
-        );
-    });
-
-
     const [testimonialRow, setTestimonialRow] = useState([]);
+    const [courses, setCourses] = useState([]);
+    
+    useEffect(() => {
+        fetch('http://localhost:5000/courses')
+          .then(res => res.json())
+          .then(data => {
+            const selected = [];
+            while (selected.length < 3 && data.length > 0) {
+              const rand = Math.floor(Math.random() * data.length);
+              const course = data[rand];
+              if (!selected.find(c => c.id === course.id)) {
+                selected.push(course);
+              }
+            }
+            setCourses(selected);
+          })
+          .catch(err => console.error("Failed to load courses:", err));
+      }, []);
+
+      
+    
+
+
+    
     
     // using useEffect as homepage c) asks for it 
     useEffect(() => {
-        let stars = "★☆";
-        let randomTestimonials = [];
-
-        while (randomTestimonials.length != 2){
-            let test = Math.floor(Math.random()*4);
-    
-            let canAdd = true;
-            for (let i = 0; i < randomTestimonials.length; i++){
-                if (testimonials[test] == randomTestimonials[i]){
-                    canAdd = false;
-                    break;
-                }
+        fetch('http://localhost:5000/testimonials')
+            .then(res => res.json())
+            .then(data => {
+            const selected = [];
+            while (selected.length < 2 && data.length > 0) {
+            const rand = Math.floor(Math.random() * data.length);
+            const t = data[rand];
+            if (!selected.find(x => x.courseName === t.courseName && x.studentName === t.studentName)) {
+                selected.push(t);
             }
-            if (canAdd){
-                randomTestimonials.push(testimonials[test]);
-            }
-        } 
-
-        setTestimonialRow(randomTestimonials.map((testimonial) =>{
-            let i = 0;
-            let rating = "";
-            for (i; i < testimonial.rating; i++){
-                rating += stars[0];
-            }
-            for (i; i < 5; i++){
-                rating += stars[1];
-            }
+        }
+        const stars = "★☆";
+        const rows = selected.map((testimonial, index) => {
+          let rating = '';
+          for (let i = 0; i < testimonial.rating; i++) rating += stars[0];
+          for (let i = testimonial.rating; i < 5; i++) rating += stars[1];
 
             return (
                 <td class="tile" id='p'>
@@ -88,10 +71,23 @@ function MainSection(){
                     <p>{rating}</p>
                 </td>
             );
-        })
-    )}, []); /* <- Only changing on initial render to avoid infinte 
+        });
+
+        setTestimonialRow(rows);
+      })
+      .catch(err => console.error("Failed to load testimonials:", err));
+  }, []); /* <- Only changing on initial render to avoid infinte 
                 re-renders, still technically shows 2 on each re-render!*/ 
-    
+
+        const courseTable = courses.map(course => (
+            <td key={course.id} className="tile" id="e">
+                <img src={course.image === "images/course1.jpg" ? course1 : course2} alt={course.name} />
+                <h4>{course.name}</h4>
+                <p>{course.instructor}</p>
+                <p>{course.description}</p>
+                <p>{course.duration}</p>
+            </td>
+            ));
 
 
     return (

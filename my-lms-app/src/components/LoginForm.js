@@ -25,21 +25,21 @@ const LoginFormFunction = () => {
     }
 
     try {
-      const res = await fetch('https://jsonplaceholder.typicode.com/users');
-      const users = await res.json();
+      const res = await fetch('http://localhost:5000/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
 
-      const found = users.find(user =>
-        user.username.toLowerCase() === username.toLowerCase() &&
-        user.email.toLowerCase() === password.toLowerCase()
-      );
+      const result = await res.json();
 
-      if (found) {
+      if (res.ok) {
         setStatus({ type: 'success', message: 'Login successful! Redirecting...' });
         setTimeout(() => {
           navigate('/courses');
         }, 2000);
       } else {
-        setStatus({ type: 'error', message: 'Invalid credentials.' });
+        setStatus({ type: 'error', message: result.error || 'Login failed.' });
       }
     } catch (err) {
       setStatus({ type: 'error', message: 'API error. Try again later.' });

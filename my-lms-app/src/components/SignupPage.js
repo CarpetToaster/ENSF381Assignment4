@@ -31,7 +31,7 @@ const RegFormFunction = () => {
       return "Invalid username. Use 3–20 characters, start with a letter.";
     }
     if (!passwordRegex.test(formData.password)) {
-      return "Password must be 8+ chars, with upper/lower/number/special.";
+      return "Password must be 8 or more characters, with upper/lower/number/special.";
     }
     if (formData.password !== formData.confirmPassword) {
       return "Passwords do not match.";
@@ -50,10 +50,15 @@ const RegFormFunction = () => {
     }
 
     try {
+      console.log("Sending data to backend:", formData);
       const res = await fetch('http://localhost:5000/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          username: formData.username,
+          password: formData.password,
+          email: formData.email
+        })
       });
 
       const result = await res.json();
@@ -65,6 +70,7 @@ const RegFormFunction = () => {
         setStatus({ type: 'error', message: result.error || 'Registration failed.' });
       }
     } catch (err) {
+      console.error("Fetch error:", err);
       setStatus({ type: 'error', message: 'API error. Try again later.' });
     }
   };
