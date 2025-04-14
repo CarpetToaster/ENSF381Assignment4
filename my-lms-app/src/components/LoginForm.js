@@ -5,7 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import './styles.css';
 
-export const AuthContext = createContext();
+export const AuthContextLogin = createContext();
 
 const LoginFormFunction = () => {
   const [username, setUsername] = useState('');
@@ -25,21 +25,22 @@ const LoginFormFunction = () => {
     }
 
     try {
-      const res = await fetch('https://jsonplaceholder.typicode.com/users');
-      const users = await res.json();
+      const res = await fetch('http://localhost:5000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
 
-      const found = users.find(user =>
-        user.username.toLowerCase() === username.toLowerCase() &&
-        user.email.toLowerCase() === password.toLowerCase()
-      );
+      const result = await res.json();
 
-      if (found) {
+      if (res.ok) {
         setStatus({ type: 'success', message: 'Login successful! Redirecting...' });
         setTimeout(() => {
+          localStorage.setItem("studentId", result.student_id)
           navigate('/courses');
         }, 2000);
       } else {
-        setStatus({ type: 'error', message: 'Invalid credentials.' });
+        setStatus({ type: 'error', message: result.error || 'Login failed.' });
       }
     } catch (err) {
       setStatus({ type: 'error', message: 'API error. Try again later.' });
@@ -47,7 +48,7 @@ const LoginFormFunction = () => {
   };
 
   return (
-    <AuthContext.Provider value={{ status }}>
+    <AuthContextLogin.Provider value={{ status }}>
       <main className="main_login" id="loginArea">
         <h2>LMS Login</h2>
         <form>
@@ -72,12 +73,12 @@ const LoginFormFunction = () => {
           </div>
 
           <a href="#">Forgot Password?</a><br />
-          <a href="#">Don't have an account? Sign up</a>
+          <a href="Register">Don't have an account? Sign up</a>
 
           <AuthMessage />
         </form>
       </main>
-    </AuthContext.Provider>
+    </AuthContextLogin.Provider>
   );
 };
 

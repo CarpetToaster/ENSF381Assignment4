@@ -13,6 +13,9 @@ function Header(){
                 <a href="Login">Login Page</a>
             </nav>
             <nav>
+                <a href="Register">Signup Page</a>
+            </nav>
+            <nav>
                 <a href="Courses">Courses Page</a>
             </nav>
             <div></div>

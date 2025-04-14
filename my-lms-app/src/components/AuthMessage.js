@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
-import { AuthContext } from './LoginForm';
+import { AuthContextLogin } from './LoginForm';
+import { AuthContextSignup } from './SignupPage';
 import DisplayStatus from './DisplayStatus';
 
 const AuthMessage = () => {
-  const { status } = useContext(AuthContext);
+  const login = useContext(AuthContextLogin);
+  const signup = useContext(AuthContextSignup);
+  const status = login?.status || signup?.status;
 
-  // Don't show anything if there's no message
-  if (!status.message) return null;
+  if (!status?.message) return null;
 
   return (
     <DisplayStatus type={status.type} message={status.message} />
